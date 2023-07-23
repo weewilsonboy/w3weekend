@@ -1,0 +1,54 @@
+{% extends 'base.jinja' %}
+{% block content %}
+
+<main>
+    <header>
+        <h1>{{ title }}</h1>
+    </header>
+    
+
+    <form action="/books" method="post" class="new_book">
+    <h3>New Book</h3>
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title">
+    <label for="author">Author</label>
+    <input type="text" name="author" id="author">
+    <label for="genre">Genre</label>
+    <input type="text" name="genre" id="genre">
+    <input type="submit" name="newbook" id="newbook">
+    </form>
+
+
+
+
+
+
+
+    <ul>
+        {% for book in book_list %}
+                <p>Title: {{ book.title }}, Author: {{ book.author }}, Genre: {{ book.genre }} </p>
+                <form action="/books/openindex/{{ book.title }}", method="post">
+                <input type="submit" value = "View Book">
+                </form>
+                <form action="/books/deleteindex", method="post">
+                <input type ="hidden" name="index" value={{book_list.index(book)}}>
+                <input type="submit" value = "delete me">
+                </form>
+            
+            
+            
+            
+            </li>
+        {% endfor %}
+    </ul>
+
+
+
+
+
+</main>
+
+
+
+
+{% endblock content %}
